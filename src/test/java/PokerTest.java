@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -123,6 +124,45 @@ public class PokerTest {
         hands.add(color);
         int [] points = poker.total(hands);
         assertEquals(80, points[0]);
+    }
+
+    @Test
+    void shouldReturnTotalPointsOfAllHands() {
+        Hand full = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.SPADE, 2),
+                new Card(Color.DIAMOND, 2),
+                new Card(Color.CLOVER, 9),
+                new Card(Color.SPADE, 9)
+        });
+        Hand suite = new Hand(new Card[] {
+                new Card(Color.CLOVER, 5),
+                new Card(Color.DIAMOND, 6),
+                new Card(Color.HEART, 7),
+                new Card(Color.SPADE, 8),
+                new Card(Color.CLOVER, 9)
+        });
+        Hand color = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.HEART, 7),
+                new Card(Color.HEART, 9),
+                new Card(Color.HEART, 11),
+                new Card(Color.HEART, 13)
+        });
+        Hand highCard = new Hand(new Card[] {
+                new Card(Color.CLOVER, 3),
+                new Card(Color.DIAMOND, 8),
+                new Card(Color.HEART, 10),
+                new Card(Color.SPADE, 12),
+                new Card(Color.CLOVER, 13)
+        });
+        List<Hand> hands = new ArrayList<>();
+        hands.add(full);
+        hands.add(suite);
+        hands.add(color);
+        hands.add(highCard);
+        int[] points = poker.total(hands);
+        assertEquals(148, Arrays.stream(points).sum());
     }
 
 }
