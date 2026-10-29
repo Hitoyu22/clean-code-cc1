@@ -15,6 +15,9 @@ public class Poker {
     }
 
     private int points(Hand hand) {
+        if (isSuite(hand)) {
+            return 40;
+        }
         if (isBrelan(hand)) {
             return BRELAN_POINTS;
         }
@@ -29,6 +32,18 @@ public class Poker {
         int lastCardValue = getPointCard(cards.getLast());
 
         return firstCardValue == thirdCardValue || thirdCardValue == lastCardValue;
+    }
+
+    private boolean isSuite(Hand hand) {
+        List<Card> cards = sortedCards(hand);
+        for (int i = 0; i < cards.size() -1; i++) {
+            int actualCardPoint = getPointCard(cards.get(i));
+            int nextCardPoint = getPointCard(cards.get(i+1));
+            if (nextCardPoint != (actualCardPoint + 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private int getHighCard(Hand hand) {
