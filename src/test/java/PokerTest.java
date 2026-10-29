@@ -59,4 +59,19 @@ public class PokerTest {
         assertEquals(60, points[0]);
     }
 
+    @Test
+    void shouldReturnColorPoints(){
+        Hand color = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.HEART, 5),
+                new Card(Color.HEART, 7),
+                new Card(Color.HEART, 9),
+                new Card(Color.HEART, 11)
+        });
+        List<Hand> hands = new ArrayList<>();
+        hands.add(color);
+        int [] points = poker.total(hands);
+        assertEquals(45, points[0]);
+    }
+
 }
