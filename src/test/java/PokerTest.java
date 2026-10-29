@@ -41,4 +41,13 @@ public class PokerTest {
         assertEquals(40, points[0]);
     }
 
+    @Test
+    public void shouldReturnFullPoints() {
+        Hand suite = new Hand(Color.CLOVER, new int[] {2,2,2,9,9});
+        List<Hand> hands = new ArrayList<>();
+        hands.add(suite);
+        int [] points = poker.total(hands);
+        assertEquals(50, points[0]);
+    }
+
 }
