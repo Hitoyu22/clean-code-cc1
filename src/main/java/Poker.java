@@ -5,6 +5,7 @@ import java.util.List;
 public class Poker {
 
     private static final int BRELAN_POINTS = 30;
+    private static final int SUITE_POINTS = 40;
 
     public int[] total(List<Hand> hands) {
         int[] points = new int[hands.size()];
@@ -15,13 +16,11 @@ public class Poker {
     }
 
     private int points(Hand hand) {
-        if (isSuite(hand)) {
-            return 40;
-        }
-        if (isBrelan(hand)) {
-            return BRELAN_POINTS;
-        }
-        return getHighCard(hand);
+        return switch (hand) {
+            case Hand h when isSuite(h) -> SUITE_POINTS;
+            case Hand h when isBrelan(h) -> BRELAN_POINTS;
+            default -> getHighCard(hand);
+        };
     }
 
     private boolean isBrelan(Hand hand) {
