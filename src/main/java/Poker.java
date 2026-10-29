@@ -9,6 +9,7 @@ public class Poker {
     private static final int FULL_POINTS = 50;
     private static final int SQUARE_POINTS = 60;
     private static final int COLOR_POINTS = 45;
+    private static final int QUINTE_FLUSH_POINTS = 80;
 
     public int[] total(List<Hand> hands) {
         int[] points = new int[hands.size()];
@@ -20,6 +21,7 @@ public class Poker {
 
     private int points(Hand hand) {
         return switch (hand) {
+            case Hand h when isQuinteFlush(h) -> QUINTE_FLUSH_POINTS;
             case Hand h when isSuite(h) -> SUITE_POINTS;
             case Hand h when isFull(h) -> FULL_POINTS;
             case Hand h when isSquare(h) -> SQUARE_POINTS;
@@ -41,6 +43,10 @@ public class Poker {
         int lastCardValue = getPointCard(cards.getLast());
 
         return firstCardValue == secondCardValue && fourthCardValue == lastCardValue;
+    }
+
+    private boolean isQuinteFlush(Hand hand) {
+        return isSuite(hand) && isColor(hand);
     }
 
     private boolean isSquare(Hand hand) {

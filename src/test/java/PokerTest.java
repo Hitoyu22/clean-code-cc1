@@ -11,7 +11,13 @@ public class PokerTest {
 
     @Test
     public void shouldReturnBrelanPoints() {
-        Hand hand = new Hand(Color.HEART, new int[]{2,2,2,8,9});
+        Hand hand = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.SPADE, 2),
+                new Card(Color.CLOVER, 2),
+                new Card(Color.HEART, 8),
+                new Card(Color.DIAMOND, 9)
+        });
         List<Hand> hands = new ArrayList<>();
         hands.add(hand);
         int[] points = poker.total(hands);
@@ -21,8 +27,20 @@ public class PokerTest {
 
     @Test
     public void shouldReturnHighCardPoints() {
-        Hand brelan = new Hand(Color.HEART, new int[]{2,2,2,8,9});
-        Hand highCard = new Hand(Color.SPADE, new int[]{3,5,7,9,11});
+        Hand brelan = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.SPADE, 2),
+                new Card(Color.CLOVER, 2),
+                new Card(Color.HEART, 8),
+                new Card(Color.DIAMOND, 9)
+        });
+        Hand highCard = new Hand(new Card[] {
+                new Card(Color.SPADE, 3),
+                new Card(Color.HEART, 5),
+                new Card(Color.SPADE, 7),
+                new Card(Color.CLOVER, 9),
+                new Card(Color.DIAMOND, 11)
+        });
         List<Hand> hands = new ArrayList<>();
         hands.add(brelan);
         hands.add(highCard);
@@ -34,7 +52,13 @@ public class PokerTest {
 
     @Test
     public void shouldReturnSuitePoints() {
-        Hand suite = new Hand(Color.CLOVER, new int[]{6,4,8,5,7});
+        Hand suite = new Hand(new Card[] {
+                new Card(Color.CLOVER, 6),
+                new Card(Color.HEART, 4),
+                new Card(Color.SPADE, 8),
+                new Card(Color.CLOVER, 5),
+                new Card(Color.DIAMOND, 7)
+        });
         List<Hand> hands = new ArrayList<>();
         hands.add(suite);
         int[] points = poker.total(hands);
@@ -43,7 +67,13 @@ public class PokerTest {
 
     @Test
     public void shouldReturnFullPoints() {
-        Hand suite = new Hand(Color.CLOVER, new int[] {2,2,2,9,9});
+        Hand suite = new Hand(new Card[] {
+                new Card(Color.CLOVER, 2),
+                new Card(Color.HEART, 2),
+                new Card(Color.SPADE, 2),
+                new Card(Color.CLOVER, 9),
+                new Card(Color.DIAMOND, 9)
+        });
         List<Hand> hands = new ArrayList<>();
         hands.add(suite);
         int [] points = poker.total(hands);
@@ -52,7 +82,13 @@ public class PokerTest {
 
     @Test
     void shouldReturnSquarePoints() {
-        Hand suite = new Hand(Color.CLOVER, new int[] {2,2,2,2,9});
+        Hand suite = new Hand(new Card[] {
+                new Card(Color.CLOVER, 2),
+                new Card(Color.HEART, 2),
+                new Card(Color.SPADE, 2),
+                new Card(Color.DIAMOND, 2),
+                new Card(Color.CLOVER, 9)
+        });
         List<Hand> hands = new ArrayList<>();
         hands.add(suite);
         int [] points = poker.total(hands);
