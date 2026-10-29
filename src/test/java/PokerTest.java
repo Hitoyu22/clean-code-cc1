@@ -74,4 +74,19 @@ public class PokerTest {
         assertEquals(45, points[0]);
     }
 
+    @Test
+    void shouldReturnQuinteFlushPoints() {
+        Hand color = new Hand(new Card[] {
+                new Card(Color.HEART, 2),
+                new Card(Color.HEART, 3),
+                new Card(Color.HEART, 4),
+                new Card(Color.HEART, 5),
+                new Card(Color.HEART, 6)
+        });
+        List<Hand> hands = new ArrayList<>();
+        hands.add(color);
+        int [] points = poker.total(hands);
+        assertEquals(80, points[0]);
+    }
+
 }
