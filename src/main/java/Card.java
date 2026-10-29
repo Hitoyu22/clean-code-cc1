@@ -8,6 +8,10 @@ public class Card {
         this.value = value;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public int getValue() {
         return value;
     }

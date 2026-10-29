@@ -8,6 +8,7 @@ public class Poker {
     private static final int SUITE_POINTS = 40;
     private static final int FULL_POINTS = 50;
     private static final int SQUARE_POINTS = 60;
+    private static final int COLOR_POINTS = 45;
 
     public int[] total(List<Hand> hands) {
         int[] points = new int[hands.size()];
@@ -22,6 +23,7 @@ public class Poker {
             case Hand h when isSuite(h) -> SUITE_POINTS;
             case Hand h when isFull(h) -> FULL_POINTS;
             case Hand h when isSquare(h) -> SQUARE_POINTS;
+            case Hand h when isColor(h) -> COLOR_POINTS;
             case Hand h when isBrelan(h) -> BRELAN_POINTS;
             default -> getHighCard(hand);
         };
@@ -54,6 +56,17 @@ public class Poker {
         int lastCardValue = getPointCard(cards.getLast());
 
         return firstCardValue == fourthCardValue || secondCardValue == lastCardValue;
+    }
+
+    private boolean isColor(Hand hand) {
+        List<Card> cards = hand.getCards();
+        Color firstCardColor = cards.getFirst().getColor();
+        for (Card card : cards) {
+            if (card.getColor() != firstCardColor) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean isBrelan(Hand hand) {

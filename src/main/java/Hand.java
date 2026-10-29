@@ -11,6 +11,10 @@ public class Hand {
         }
     }
 
+    public Hand(Card[] cards) {
+        this.cards.addAll(List.of(cards));
+    }
+
     public List<Card> getCards() {
         return cards;
     }
