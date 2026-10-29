@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Poker {
 
+    private static final int BRELAN_POINTS = 30;
+
     public int[] total(List<Hand> hands) {
         int[] points = new int[hands.size()];
         for (int i = 0; i < hands.size(); i++) {
@@ -14,9 +16,9 @@ public class Poker {
 
     private int points(Hand hand) {
         if (isBrelan(hand)) {
-            return 30;
+            return BRELAN_POINTS;
         }
-        return getPointCard(sortedCards(hand).getLast());
+        return getHighCard(hand);
     }
 
     private boolean isBrelan(Hand hand) {
@@ -27,6 +29,10 @@ public class Poker {
         int lastCardValue = getPointCard(cards.getLast());
 
         return firstCardValue == thirdCardValue || thirdCardValue == lastCardValue;
+    }
+
+    private int getHighCard(Hand hand) {
+        return getPointCard(sortedCards(hand).getLast());
     }
 
     private List<Card> sortedCards(Hand hand) {
