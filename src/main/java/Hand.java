@@ -10,4 +10,8 @@ public class Hand {
             cards.add(new Card(color, value));
         }
     }
+
+    public List<Card> getCards() {
+        return cards;
+    }
 }
